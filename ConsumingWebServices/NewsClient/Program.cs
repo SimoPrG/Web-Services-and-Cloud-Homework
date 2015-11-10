@@ -38,8 +38,10 @@ namespace NewsClient
 
         static async void PrintNews(string query, int n)
         {
-            var httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri("http://jsonplaceholder.typicode.com/");
+            var httpClient = new HttpClient
+            {
+                BaseAddress = new Uri("http://jsonplaceholder.typicode.com/")
+            };
 
             JArray.Parse(await httpClient.GetStringAsync("posts"))
                 .Where(news => ((string)news["title"]).Contains(query))
